@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('sky.jpg');
+            height: 600px;
+            padding-top: 160px;
+            padding-left: 450px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+    <title></title>
+    <link rel="stylesheet" href= "https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" crossorigin="anonymous">
+    </head>
+    <body>
+    <div class="maps">
+    <div id="myDiv" style="padding-top: -70px; thick solid rgb(4, 209, 255); width: 590px;"><p style="padding-left: 200px; font-size:25px; color: brown;">This is  Geolocation:</p>
+    <meta charset="utf-8" />
+	<script type='text/javascript'>
+    function GetMap() 
+    {
+        var map = new Microsoft.Maps.Map('#myMap', {
+            credentials: 'AkpROZf-XuvXFd8Alnd5HsjBZTubommjl9h3jR7oH_rmCouuve3sZ4FblRQK48La'
+        });
+
+        //Request the user's location
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var loc = new Microsoft.Maps.Location(
+                position.coords.latitude,
+                position.coords.longitude);
+
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+
+            //Center the map on the user's location.
+            map.setView({ center: loc, zoom: 15 });
+        });
+    }
+    </script>
+    <script>
+    function myFunction() {
+      document.getElementById("myDiv").style.border = "thick solid #0000FF";
+    }
+    </script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer>
+    </script>
+</head>
+</div>
+</div>
+
+
+    <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
+</body><br>
+<center style="padding-right: 420px;"><button type="button" onclick="myFunction()">SET BORDER</button></center>
+
+
+
+
+<div class="m-2">
+    <section class="container">
+        <section class="row">
+            <section class="col border bg-success">
+                Geolocation
+            </section>
+            <section class="col border bg-secondary">
+                Geolocation
+            </section>
+            <section class="col border bg-danger">
+                Geolocation
+            </section>
+
+</div>
+</html>
+
+
+
+
+
+
+
+
