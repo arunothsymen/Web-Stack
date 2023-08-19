@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <?xml-model href="product.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+ <products >
+    <product>
+      <id>Guitar 100</id>
+      <name>Acoustic Guitar</name>
+      <price>107000</price>
+      <quantity>5</quantity>
+      <category>Guitar</category>
+    </product>
+    <product>
+      <id>Piano 100</id>
+      <name>Yamaha Piano</name>
+      <price>500000</price>
+      <quantity>10</quantity>
+      <category>Piano</category>
+    </product>
+    <product>
+      <id>Drum 100</id>
+      <name>Drum Kit</name>
+      <price>150000</price>
+      <quantity>15</quantity>
+      <category>Drum</category>
+    </product>
+  </products>
