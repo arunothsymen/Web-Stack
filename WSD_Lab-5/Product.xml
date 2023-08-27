@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<?xml-model href="" type="application/xml-dtd"?>
+<shopsmart>
+<products>
+   <product>
+      <company_name>YAMAHA</company_name>
+      <items>
+          <item_name>Piano</item_name>
+          <item_name>Guitar</item_name>
+          <item_name>Drum</item_name>
+      </items>
+  </product>
+  <product>
+      <company_name>CASIO</company_name>
+      <items>
+          <item_name>Piano</item_name>
+          <item_name>Guitar</item_name>
+          <item_name>Drum</item_name>
+      </items>
+  </product>
+</products>
+</shopsmart>
