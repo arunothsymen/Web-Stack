@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT joke (joke+)>
+    <!ELEMENT jokes (Category, Joke)>
+    <!ELEMENT Category (#PCDATA)>
+    <!ELEMENT Joke (#PCDATA)>

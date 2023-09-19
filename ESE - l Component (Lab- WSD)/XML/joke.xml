@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<?xml-model href="" type="application/xml-dtd"?>
+<joke>
+    <jokes>
+        <Category>Programming</Category>
+        <Joke>Why don't scientists trust atoms? Because they make up everything!</Joke>
+     </jokes>
+     <jokes>
+        <Category>Animal Crossing</Category>
+        <Joke>Parallel lines have so much in common. It's a shame they'll never meet.</Joke>
+     </jokes>
+     <jokes>
+      <Category>Religion</Category>
+        <Joke>I used to play piano by ear, but now I use my hands.
+      </Joke>
+     </jokes>
+     <jokes>
+        <Category>Political</Category>
+        <Joke>Did you hear about the mathematician who's afraid of negative numbers? He'll stop 
+         at nothing to avoid them.</Joke>
+     </jokes>
+     <jokes>
+        <Category>Food</Category>
+        <Joke>What do you call a fish with no eyes? Fsh.</Joke>
+     </jokes>
+</joke>
