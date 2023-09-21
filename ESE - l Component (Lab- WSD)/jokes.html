@@ -30,38 +30,33 @@
       </nav><br>
 
 <center>
-    <button id="fetch-jokes">Fetch Jokes</button>
-    <div id="jokeList"></div>
-
-    <script>
-      const button = document.querySelector('#fetch-jokes');
-      const jokeList = document.querySelector('#jokeList');
-
-      button.addEventListener('click', () => {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'jokes.json', true);
-        xhr.onload = function () {
-          if (this.status === 200) {
-            const jokes = JSON.parse(this.responseText);
-            displayjokes(jokes);
-          }
-        };
-        xhr.send();
-      });
-
-      function displayjokes(jokes) {
-        let output = '';
-        books.forEach(function (jokes) {
-          output += `
-            <div>
-              <p><b>Category<b>: ${jokes.category}</p>
-              <p><b>Joke<b>: ${jokes.joke}</p>
-            </div>
-          `;
-        });
-        jokesList.innerHTML = output;
-      }
-    </script>
+      <h1>Jokes</h1>
+      <button id="fetch-jokes">Fetch Jokes</button>
+      <ul id="joke-list"></ul>
+  
+      <script>
+          const button = document.getElementById("fetch-jokes");
+          const jokeList = document.getElementById("joke-list");
+  
+          button.addEventListener("click", () => {
+              fetch("jokes.json")
+                  .then(response => response.json())
+                  .then(data => {
+                      jokeList.innerHTML = ""; // Clear previous jokes
+                      data.forEach(joke => {
+                          const listItem = document.createElement("li");
+                          listItem.innerHTML = `
+                              <strong>${joke.category}</strong><br>
+                              ${joke.joke}
+                          `;
+                          jokeList.appendChild(listItem);
+                      });
+                  })
+                  .catch(error => {
+                      console.error("Error fetching jokes:", error);
+                  });
+          });
+      </script>
 </center>
   </body>
 </html>
