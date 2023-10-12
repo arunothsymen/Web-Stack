@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+    
+        h1 {
+            color: #333;
+        }
+    
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+    
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+    
+        thead {
+            background-color: #007BFF;
+            color: #fff;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <h1>Welcome to My Web App</h1>
+    <button id="fetchDataButton">Fetch Data</button>
+    <button id="createNoteButton">Create Note</button>
+    <button id="updateNoteButton">Update Note</button>
+    <button id="deleteNoteButton">Delete Note</button>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Contents</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody id="dataContainer">
+        </tbody>
+    </table>
+
+    <script>
+        function getCurrentDateTime() {
+            const now = new Date();
+            return now.toISOString().slice(0, 19).replace('T', ' ');
+        }
+
+        function fetchData() {
+            fetch('http://127.0.0.1:3000/api/notes')
+                .then((response) => response.json())
+                .then((data) => {
+                    const dataContainer = document.getElementById('dataContainer');
+                    dataContainer.innerHTML = '';
+
+                    data.forEach((item) => {
+                        const row = document.createElement('tr');
+                        const idCell = document.createElement('td');
+                        const titleCell = document.createElement('td');
+                        const contentsCell = document.createElement('td');
+                        const createdCell = document.createElement('td');
+
+                        idCell.textContent = item.id;
+                        titleCell.textContent = item.title;
+                        contentsCell.textContent = item.contents;
+                        createdCell.textContent = item.created;
+
+                        row.appendChild(idCell);
+                        row.appendChild(titleCell);
+                        row.appendChild(contentsCell);
+                        row.appendChild(createdCell);
+
+                        dataContainer.appendChild(row);
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        document.getElementById('fetchDataButton').addEventListener('click', fetchData);
+
+        document.getElementById('createNoteButton').addEventListener('click', () => {
+            const title = prompt('Enter the title of the note:');
+            const contents = prompt('Enter the contents of the note:');
+
+            fetch('http://127.0.0.1:3000/api/notes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title, contents, created: getCurrentDateTime() }),
+            })
+            .then(fetchData)
+            .catch((error) => {
+                console.error('Error creating note:', error);
+            });
+        });
+
+        document.getElementById('updateNoteButton').addEventListener('click', () => {
+            const id = prompt('Enter the ID of the note to update:');
+            const title = prompt('Enter the new title:');
+            const contents = prompt('Enter the new contents:');
+
+            fetch(`http://127.0.0.1:3000/api/notes/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title, contents, created: getCurrentDateTime() }),
+            })
+            .then(fetchData)
+            .catch((error) => {
+                console.error('Error updating note:', error);
+            });
+        });
+
+        document.getElementById('deleteNoteButton').addEventListener('click', () => {
+            const id = prompt('Enter the ID of the note to delete:');
+
+            fetch(`http://127.0.0.1:3000/api/notes/${id}`, {
+                method: 'DELETE',
+            })
+            .then(fetchData)
+            .catch((error) => {
+                console.error('Error deleting note:', error);
+            });
+        });
+    </script>
+</body>
+</html>
